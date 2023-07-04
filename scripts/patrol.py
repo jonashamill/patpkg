@@ -21,7 +21,6 @@ def main():
     rospy.init_node("patrol")
     
     # create ros pub
-
     cmd_pub = rospy.Publisher("cmd_vel", Twist, queue_size=1)
     
     while (1):
