@@ -2,6 +2,7 @@
 
 import rospy
 from ar_track_alvar_msgs.msg import AlvarMarkers
+from pyzbar import pyzbar
 
 def main():
     
