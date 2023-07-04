@@ -23,9 +23,9 @@ def main():
     # create ros pub
     cmd_pub = rospy.Publisher("cmd_vel", Twist, queue_size=1)
     
-    # while (1):
+    while (1):
 
-    for _ in range (20):
+    # for _ in range (20):
 
         drive(1.0,0.0, cmd_pub)
     
