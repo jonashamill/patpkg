@@ -30,7 +30,6 @@ def main():
         drive(1.0,0.0, cmd_pub)
     
      
-    
     return
 
 

@@ -4,13 +4,26 @@
 
     <!-- <rosparam command="load" file="$(find patpkg)/config/params.yaml" /> -->
 
+    <include file="$(find leo_navigation)/launch/odometry.launch" />
+
+    <include file="$(find arLogger)/launch/arlaunch.launch" />
+
+    <include file="$(find leo_navigation)/launch/amcl.launch"/>
+
+    <include file="$(find leo_navigation)/launch/navigation.launch" />
+
+    <node pkg="laser_filters" type="scan_to_scan_filter_chain" name="laser_filter">
+      <rosparam command="load" file="$(find leo_navigation)/config/laser_config.yaml"/>
+   </node>
+
+
+
+
     <node name="patrol" pkg="patpkg" type="patrol.py" output="screen">
 
     </node>
 
-    <node name="bc" pkg="patpkg" type="bc.py" output="screen" >
-        
-    </node>
+   
 
 
 </launch>
