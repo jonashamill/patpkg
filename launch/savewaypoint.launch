@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <launch>
     
-    <node pkg="patpkg" type="savewaypoint.py" name="savewaypoint.py" output="screen">
+    <node pkg="patpkg" type="savewaypoint.py" name="savewaypoint" output="screen">
 
     </node>
 
