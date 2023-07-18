@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import rospy
-from geographic_msgs.msg import PointStamped
+from geometry_msgs.msg import PointStamped
 import csv
 import rospkg
 import os
@@ -34,21 +34,43 @@ def getPath():
 
 
 
+def makeFolder():
+
+    path, _ = getPath()
+
+    testFile = None
+
+    # test folder permisions
+    try:
+        testFile = open(os.path.join(path, 'test.txt'), 'w+')
+    except IOError:
+        try:
+            os.mkdir(path)
+        except OSError:
+            print("No waypoint folder created")
+        else:
+            print("waypoint folder created")
+
+    testFile.close()
+    os.remove(testFile.name)
+
+
+def saveCSV(msg):
+    
+    _, filename = getPath()
+
+    with open(filename, "a", newline="") as file:
+        writer = csv.writer(file)
+        writer.writerow([msg.point.x, msg.point.y, 0])
 
 
 def main():
 
-    rp = rospkg.rospack()
+    _, fullpath = getPath()
 
-
-
-
-
-
-
-
-
-
+    rospy.init_node('savewaypoint', anonymous=True)
+    rospy.point_pub = rospy.Subscriber('/clicked_point', PointStamped, saveCSV)
+    rospy.spin()
 
 
 
