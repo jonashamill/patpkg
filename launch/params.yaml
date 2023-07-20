@@ -1,1 +1,3 @@
 usePlasticity: True  # Set to True to enable plasticity, or False to disable it
+timeThresholdLow: 8  # Define the lower time threshold
+timeThresholdHigh: 10  # Define the higher time threshold
