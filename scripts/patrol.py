@@ -37,6 +37,8 @@ def drive(linear, angular, cmd_pub):
 
 
 def main():
+
+    usePlasticity = rospy.get_param("~usePlasticity", True)
     
 
     #initialise rosnode
@@ -50,7 +52,12 @@ def main():
     
     while not rospy.is_shutdown():
 
-        patSpeed = patrolSpeed()
+        
+        if usePlasticity:
+            patSpeed = patrolSpeed()
+        
+        else:
+            patSpeed = 1.0
 
         for _ in range (20):
 

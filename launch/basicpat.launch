@@ -4,6 +4,8 @@
 
     <!-- <rosparam command="load" file="$(find patpkg)/config/params.yaml" /> -->
 
+    <param name="usePlasticity" value="True" />
+
     <include file="$(find arLogger)/launch/arlaunch.launch" />
 
     <node name="patrol" pkg="patpkg" type="patrol.py" output="screen">
