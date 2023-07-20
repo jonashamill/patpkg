@@ -14,7 +14,7 @@ def patrolSpeed():
 
     patSpeed = 1.0
 
-    plastic = plasticCallback
+    plastic = plasticCallback()
 
     if plastic == 1:
         patSpeed = patSpeed - 0.2
@@ -48,11 +48,13 @@ def main():
     # create ros pub
     cmd_pub = rospy.Publisher("cmd_vel", Twist, queue_size=1)
     
-    while (1):
+    while not rospy.is_shutdown():
+
+        patSpeed = patrolSpeed()
 
         for _ in range (20):
 
-            drive(1.0,0.0, cmd_pub)
+            drive(patSpeed,0.0, cmd_pub)
         
         for _ in range (5):
 
