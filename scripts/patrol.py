@@ -2,6 +2,28 @@
 
 import rospy
 from geometry_msgs.msg import Twist
+from std_msgs.msg import Int32
+
+def plasticCallback(msg):
+
+    plastic = msg.data
+
+    return plastic
+
+def patrolSpeed():
+
+    patSpeed = 1.0
+
+    plastic = plasticCallback
+
+    if plastic == 1:
+        patSpeed = patSpeed - 0.2
+    
+    elif plastic == 2:
+        patSpeed = patSpeed + 0.2
+
+    return patSpeed
+
 
 def drive(linear, angular, cmd_pub):
     
@@ -20,15 +42,22 @@ def main():
     #initialise rosnode
     rospy.init_node("patrol")
     
+    rospy.Subscriber('plasticTopic', Int32, plasticCallback)
+
+    
     # create ros pub
     cmd_pub = rospy.Publisher("cmd_vel", Twist, queue_size=1)
     
     while (1):
 
-    # for _ in range (20):
+        for _ in range (20):
 
-        drive(1.0,0.0, cmd_pub)
-    
+            drive(1.0,0.0, cmd_pub)
+        
+        for _ in range (5):
+
+            drive(0.0,1.0, cmd_pub) 
+        
      
     return
 
