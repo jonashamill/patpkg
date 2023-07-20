@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+
+<launch>
+
+    <!-- <rosparam command="load" file="$(find patpkg)/config/params.yaml" /> -->
+
+    <include file="$(find arLogger)/launch/arlaunch.launch" />
+
+    <node name="patrol" pkg="patpkg" type="patrol.py" output="screen">
+
+    </node>
+
+   
+
+
+</launch>
