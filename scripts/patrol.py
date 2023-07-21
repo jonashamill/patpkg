@@ -65,12 +65,12 @@ def main():
         else:
             patSpeed = 1.0
 
-        for _ in range (10000):
+        for i in range (10000):
 
             drive(patSpeed,0.0, cmd_pub)
 
-            print (_)
-            rospy.loginfo('Range: ', _)
+            print (i)
+            rospy.loginfo('Range: ', i)
 
 
         time.sleep(1)
