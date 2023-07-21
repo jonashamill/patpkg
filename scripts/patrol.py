@@ -40,6 +40,9 @@ def drive(linear, angular, cmd_pub):
 def main():
 
     usePlasticity = rospy.get_param("~usePlasticity", True)
+
+    linearRange = rospy.get_param("~linearRange", 100)
+    angularRange = rospy.get_param("~linearRange", 100)
     
 
     #initialise rosnode
@@ -60,7 +63,7 @@ def main():
         else:
             patSpeed = 1.0
 
-        for _ in range (5):
+        for _ in range (linearRange):
 
             drive(patSpeed,0.0, cmd_pub)
 
@@ -69,7 +72,7 @@ def main():
         time.sleep(3)
 
         
-        for _ in range (20):
+        for _ in range (angularRange):
 
             drive(0.0,1.0, cmd_pub) 
             rospy.loginfo('Turning')
