@@ -65,9 +65,9 @@ def main():
         else:
             patSpeed = 1.0
 
-        for i in range (50000):
+        # for i in range (50000):
 
-            drive(patSpeed,0.0, cmd_pub)
+        #     drive(patSpeed,0.0, cmd_pub)
 
            
 
@@ -76,7 +76,7 @@ def main():
 
         rospy.loginfo('Turning')
 
-        for _ in range (30000):
+        for _ in range (40000):
 
             drive(0.0,1.0, cmd_pub) 
             
