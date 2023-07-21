@@ -2,5 +2,5 @@ usePlasticity: True  # Set to True to enable plasticity, or False to disable it
 timeThresholdLow: 8  # Define the lower time threshold
 timeThresholdHigh: 10  # Define the higher time threshold
 initialSpeed: 1.0 #Defing starting linear velocity in m/s
-linearRange: 100 #Defining how far forward robot goes before rotating
-angularRange: 100 #Defining the rotating of the robot 
+linearRange: 1000 #Defining how far forward robot goes before rotating
+angularRange: 500 #Defining the rotating of the robot 
