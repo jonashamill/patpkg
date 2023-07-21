@@ -42,7 +42,7 @@ def main():
     usePlasticity = rospy.get_param("~usePlasticity", True)
 
     linearRange = rospy.get_param("~linearRange", 1000)
-    angularRange = rospy.get_param("~linearRange", 500)
+    angularRange = rospy.get_param("~angularRange", 500)
     
     rospy.loginfo('LinearRange: ', linearRange)
     rospy.loginfo('angularRange: ', angularRange)
