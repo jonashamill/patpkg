@@ -76,7 +76,7 @@ def main():
 
         rospy.loginfo('Turning')
 
-        for _ in range (60000):
+        for _ in range (30000):
 
             drive(0.0,1.0, cmd_pub) 
             
