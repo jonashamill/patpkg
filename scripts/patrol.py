@@ -69,8 +69,7 @@ def main():
 
             drive(patSpeed,0.0, cmd_pub)
 
-            print (i)
-            rospy.loginfo('Range: ', i)
+           
 
 
         time.sleep(1)
