@@ -10,11 +10,11 @@ def plasticCallback(msg):
 
     return plastic
 
-def patrolSpeed():
+def patrolSpeed(msg):
 
     patSpeed = 1.0
 
-    plastic = plasticCallback()
+    plastic =  msg.data # plasticCallback(msg)
 
     if plastic == 1:
         patSpeed = patSpeed - 0.2
