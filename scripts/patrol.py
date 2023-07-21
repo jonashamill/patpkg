@@ -13,7 +13,7 @@ def plasticCallback(msg):
 
 def patrolSpeed(plastic):
 
-    patSpeed = rospy.get_param("~initialSpeed", 1.0)
+    patSpeed = rospy.get_param("~initialSpeed", 0.2)
 
     #plastic =  msg.data # plasticCallback(msg)
 
