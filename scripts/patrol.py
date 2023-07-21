@@ -12,7 +12,7 @@ def plasticCallback(msg):
 
 def patrolSpeed(plastic):
 
-    patSpeed = 1.0
+    patSpeed = rospy.get_param("~initialSpeed", 1.0)
 
     #plastic =  msg.data # plasticCallback(msg)
 
@@ -59,13 +59,16 @@ def main():
         else:
             patSpeed = 1.0
 
-        for _ in range (20):
+        for _ in range (5):
 
             drive(patSpeed,0.0, cmd_pub)
+
+            rospy.loginfo(_)
         
         for _ in range (5):
 
             drive(0.0,1.0, cmd_pub) 
+            rospy.loginfo('Turning')
         
      
     return
