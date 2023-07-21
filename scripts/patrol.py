@@ -41,8 +41,8 @@ def main():
 
     usePlasticity = rospy.get_param("~usePlasticity", True)
 
-    linearRange = rospy.get_param("~linearRange", 100)
-    angularRange = rospy.get_param("~linearRange", 100)
+    linearRange = rospy.get_param("~linearRange", 1000)
+    angularRange = rospy.get_param("~linearRange", 500)
     
     rospy.loginfo('LinearRange: ', linearRange)
     rospy.loginfo('angularRange: ', angularRange)
@@ -65,7 +65,7 @@ def main():
         else:
             patSpeed = 1.0
 
-        for _ in range (linearRange):
+        for _ in range (1000):
 
             drive(patSpeed,0.0, cmd_pub)
 
