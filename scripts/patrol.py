@@ -44,6 +44,8 @@ def main():
     linearRange = rospy.get_param("~linearRange", 100)
     angularRange = rospy.get_param("~linearRange", 100)
     
+    rospy.loginfo('LinearRange: ', linearRange)
+    rospy.loginfo('angularRange: ', angularRange)
 
     #initialise rosnode
     rospy.init_node("patrol")
@@ -71,11 +73,12 @@ def main():
 
         time.sleep(3)
 
-        
+        rospy.loginfo('Turning')
+
         for _ in range (angularRange):
 
             drive(0.0,1.0, cmd_pub) 
-            rospy.loginfo('Turning')
+            
         
      
         rospy.loginfo('Sleeping') 
