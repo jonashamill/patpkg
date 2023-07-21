@@ -65,9 +65,9 @@ def main():
         else:
             patSpeed = 1.0
 
-        # for i in range (50000):
+        for i in range (70000):
 
-        #     drive(patSpeed,0.0, cmd_pub)
+            drive(patSpeed,0.0, cmd_pub)
 
            
 
