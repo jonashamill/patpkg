@@ -10,11 +10,11 @@ def plasticCallback(msg):
 
     return plastic
 
-def patrolSpeed(msg):
+def patrolSpeed(plastic):
 
     patSpeed = 1.0
 
-    plastic =  msg.data # plasticCallback(msg)
+    #plastic =  msg.data # plasticCallback(msg)
 
     if plastic == 1:
         patSpeed = patSpeed - 0.2
@@ -36,9 +36,11 @@ def drive(linear, angular, cmd_pub):
 
 
 
-def main():
+def main(msg):
 
     usePlasticity = rospy.get_param("~usePlasticity", True)
+
+    plastic =  msg.data
     
 
     #initialise rosnode
@@ -54,7 +56,7 @@ def main():
 
         
         if usePlasticity:
-            patSpeed = patrolSpeed(msg)
+            patSpeed = patrolSpeed(plastic)
         
         else:
             patSpeed = 1.0
