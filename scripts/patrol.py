@@ -36,17 +36,15 @@ def drive(linear, angular, cmd_pub):
 
 
 
-def main(msg):
+def main():
 
     usePlasticity = rospy.get_param("~usePlasticity", True)
-
-    plastic =  msg.data
     
 
     #initialise rosnode
     rospy.init_node("patrol")
     
-    rospy.Subscriber('plasticTopic', Int32, plasticCallback)
+    plastic = rospy.Subscriber('plasticTopic', Int32, plasticCallback)
 
     
     # create ros pub
