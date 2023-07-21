@@ -65,7 +65,7 @@ def main():
         else:
             patSpeed = 1.0
 
-        for i in range (50000):
+        for i in range (linearRange):
 
             drive(patSpeed,0.0, cmd_pub)
 
