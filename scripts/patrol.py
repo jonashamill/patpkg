@@ -54,7 +54,7 @@ def main():
 
         
         if usePlasticity:
-            patSpeed = patrolSpeed()
+            patSpeed = patrolSpeed(msg)
         
         else:
             patSpeed = 1.0
