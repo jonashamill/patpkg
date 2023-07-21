@@ -10,6 +10,13 @@
 
     <node name="patrol" pkg="patpkg" type="patrol.py" output="screen">
 
+    <rosparam param='usePlasticity' subst_value="true"/>
+    <rosparam param='timeThresholdLow' subst_value="8"/>
+    <rosparam param='timeThresholdHigh' subst_value="10"/>
+    <rosparam param='initialSpeed' subst_value="0.2"/>
+    <rosparam param='linearRange' subst_value="50000"/>
+    <rosparam param='angularRange' subst_value="1000"/>
+
     </node>
 
    
