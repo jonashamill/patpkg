@@ -69,9 +69,8 @@ def main():
 
             drive(patSpeed,0.0, cmd_pub)
 
-        rospy.loginfo('Sleeping') 
 
-        time.sleep(3)
+        time.sleep(1)
 
         rospy.loginfo('Turning')
 
@@ -81,9 +80,7 @@ def main():
             
         
      
-        rospy.loginfo('Sleeping') 
-
-        time.sleep(3) 
+        time.sleep(1) 
 
     return
 
