@@ -3,6 +3,7 @@
 import rospy
 from geometry_msgs.msg import Twist
 from std_msgs.msg import Int32
+import time
 
 def plasticCallback(msg):
 
@@ -59,18 +60,25 @@ def main():
         else:
             patSpeed = 1.0
 
-        for _ in range (5):
+        for _ in range ():
 
             drive(patSpeed,0.0, cmd_pub)
 
-            rospy.loginfo(_)
+        rospy.loginfo('Sleeping') 
+
+        time.sleep(3)
+
         
-        for _ in range (5):
+        for _ in range (20):
 
             drive(0.0,1.0, cmd_pub) 
             rospy.loginfo('Turning')
         
      
+        rospy.loginfo('Sleeping') 
+
+        time.sleep(3) 
+
     return
 
 
