@@ -57,8 +57,8 @@ def main():
         rospy.set_param('max_vel_x', patSpeed)
         rospy.set_param('min_vel_x', minPatSpeed)
 
-        rospy.loginfo('Max Speed: ', patSpeed)
-        rospy.loginfo('Min Speed: ', minPatSpeed)
+        rospy.loginfo('Max Speed: ', str(patSpeed))
+        rospy.loginfo('Min Speed: ', str(minPatSpeed))
 
            
 
