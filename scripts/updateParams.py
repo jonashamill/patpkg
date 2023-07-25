@@ -31,12 +31,6 @@ def main():
 
     usePlasticity = rospy.get_param("~usePlasticity", True)
 
-    linearRange = rospy.get_param("~linearRange", 1000)
-    angularRange = rospy.get_param("~angularRange", 500)
-    
-    rospy.loginfo('LinearRange: ', linearRange)
-    rospy.loginfo('angularRange: ', angularRange)
-
     #initialise rosnode
     rospy.init_node("patrol")
     
@@ -57,9 +51,14 @@ def main():
             patSpeed = 0.25
             minPatSpeed = 0.1
 
+            
+
 
         rospy.set_param('max_vel_x', patSpeed)
         rospy.set_param('min_vel_x', minPatSpeed)
+
+        rospy.loginfo('Max Speed: ', patSpeed)
+        rospy.loginfo('Min Speed: ', minPatSpeed)
 
            
 
