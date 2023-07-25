@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+
+<launch>
+
+    <rosparam command="load" file="$(find patpkg)/config/params.yaml" />
+
+    <rosparam command="load" file="$(find leo_navigation)/config/move_base/planners/local_planner.yaml" />
+
+    <!-- <param name="usePlasticity" value="True" /> -->
+
+    <include file="$(find arLogger)/launch/arlaunch.launch" />
+
+    <node name="patrol" pkg="patpkg" type="updateParams.py" output="screen">
+
+    </node>
+
+   
+</launch>
