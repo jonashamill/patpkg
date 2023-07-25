@@ -26,6 +26,7 @@ def getPath():
         return path, csvPath
 
 
+
 class Patroller():
 
     def rosInit():
@@ -51,9 +52,27 @@ class Patroller():
         wayPointAngle =  self.waypoints #heading angle
         wayPointCoord = self.theta # coordinates for each waypoint
 
-        
 
         poseList = list()
+
+        self.pose_seq = list()
+        self.goal_cnt = 0
+        for yawangle in wayPointCoord:
+            
+            poseList.append(Quaternion(*(quaternion_from_euler(0, 0, yawangle*math.pi/180, axes='sxyz'))))
+
+        n = 3
+
+        points = [wayPointAngle[i:i+n] for i in range (0, len(poseList), n)]
+
+        for point in points:
+            self.pose_seq.append(Pose(Point(*point), poseList[n-3]))
+            n += 1
+        
+
+        #Create action client
+        
+
 
 
         
