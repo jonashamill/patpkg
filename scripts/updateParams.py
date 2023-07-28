@@ -128,7 +128,7 @@ def patrolSpeed(plastic):
 
 
 
-def main(msg):
+def main():
 
 
     usePlasticity = rospy.get_param("~usePlasticity", True)
@@ -155,7 +155,7 @@ def main(msg):
             minPatSpeed = 0.1
 
 
-        getSpeed(msg, patSpeed, minPatSpeed)        
+        getSpeed(plastic, patSpeed, minPatSpeed)        
 
 
         rospy.set_param('max_vel_x', patSpeed)
