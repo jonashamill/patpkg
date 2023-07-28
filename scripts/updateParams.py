@@ -10,101 +10,101 @@ import rospkg
 import csv
 
 
-#Global vars
-timeList = []
-minList = []
-maxList = []
-start = time.perf_counter()
-currentMarker = 999
+# #Global vars
+# timeList = []
+# minList = []
+# maxList = []
+# start = time.perf_counter()
+# currentMarker = 999
 
 
-def getTime():
+# def getTime():
 
-    #grabbing time and date to provide unique ID for logs
-    dateTime = datetime.now()
-    dtString = dateTime.strftime("%Y%m%d%H%M%S") #ISO 8601 Standard
+#     #grabbing time and date to provide unique ID for logs
+#     dateTime = datetime.now()
+#     dtString = dateTime.strftime("%Y%m%d%H%M%S") #ISO 8601 Standard
 
-    return dtString
+#     return dtString
 
 
-def getPath():
+# def getPath():
 
-    timenow = getTime()
+#     timenow = getTime()
 
-    rp = rospkg.RosPack()
-    packagePath = rp.get_path('patpkg')
+#     rp = rospkg.RosPack()
+#     packagePath = rp.get_path('patpkg')
 
-    path = os.path.join(packagePath, "logs")
+#     path = os.path.join(packagePath, "logs")
 
-    fullpath = os.path.join(path, "arlog_" + timenow + ".csv")
+#     fullpath = os.path.join(path, "arlog_" + timenow + ".csv")
 
-    print (fullpath)
+#     print (fullpath)
 
-    return path, fullpath
+#     return path, fullpath
 
-def makeFolder():
+# def makeFolder():
 
-    path, _ = getPath()
+#     path, _ = getPath()
 
-    testFile = None
+#     testFile = None
 
-    # test folder permisions
-    try:
-        testFile = open(os.path.join(path, 'test.txt'), 'w+')
-    except IOError:
-        try:
-            os.mkdir(path)
-        except OSError:
-            print("No log folder created")
-        else:
-            print("Log folder created")
+#     # test folder permisions
+#     try:
+#         testFile = open(os.path.join(path, 'test.txt'), 'w+')
+#     except IOError:
+#         try:
+#             os.mkdir(path)
+#         except OSError:
+#             print("No log folder created")
+#         else:
+#             print("Log folder created")
 
-    else:
+#     else:
 
-        testFile.close()
-        os.remove(testFile.name)
+#         testFile.close()
+#         os.remove(testFile.name)
 
-def saveCSV():
+# def saveCSV():
     
-    _, filename = getPath()
+#     _, filename = getPath()
 
-    with open(filename, "w", newline="") as file:
-        writer = csv.writer(file)
-        writer.writerow(['Time', 'Velocity Min', 'Velocity Max'])
+#     with open(filename, "w", newline="") as file:
+#         writer = csv.writer(file)
+#         writer.writerow(['Time', 'Velocity Min', 'Velocity Max'])
         
-        for i in range(len(maxList)):
-            writer.writerow([timeList[i], minList[i], maxList[i]])
+#         for i in range(len(maxList)):
+#             writer.writerow([timeList[i], minList[i], maxList[i]])
 
 
 
-def checkDuplicate(iterable,check):
-    for i in iterable:
-        if i == check:
-            return True
+# def checkDuplicate(iterable,check):
+#     for i in iterable:
+#         if i == check:
+#             return True
 
 
-def getSpeed(msg, patSpeed, minPatSpeed):
+# def getSpeed(msg, patSpeed, minPatSpeed):
 
-    # for marker in msg.markers:
-    #     global currentMarker
+#     # for marker in msg.markers:
+#     #     global currentMarker
 
-    #     if marker.id != currentMarker:
+#     #     if marker.id != currentMarker:
             
-    finish = time.perf_counter()
-    timeTaken = round(finish-start, 5)
-    # currentMarker = marker.id
+#     finish = time.perf_counter()
+#     timeTaken = round(finish-start, 5)
+#     # currentMarker = marker.id
 
 
-    # if checkDuplicate(timeTaken, currentMarker) == True:
-    #     continue
-    # else:
-    timeList.append(timeTaken)
-    maxList.append(patSpeed)
-    minList.append(minPatSpeed)
+#     # if checkDuplicate(timeTaken, currentMarker) == True:
+#     #     continue
+#     # else:
+#     timeList.append(timeTaken)
+#     maxList.append(patSpeed)
+#     minList.append(minPatSpeed)
     
 
-    rospy.loginfo(currentMarker)
-    rospy.loginfo(timeTaken)
+#     rospy.loginfo(currentMarker)
+#     rospy.loginfo(timeTaken)
 
 
 def plasticCallback(msg):
@@ -127,14 +127,14 @@ def patrolSpeed(plastic):
 
     return patSpeed
 
-def getMSG(msg):
+# def getMSG(msg):
     
-    return msg
+#     return msg
 
 def main():
 
 
-    msg = getMSG
+    # msg = getMSG
 
     usePlasticity = rospy.get_param("~usePlasticity", True)
 
@@ -160,21 +160,31 @@ def main():
             minPatSpeed = 0.1
 
 
-        getSpeed(msg, patSpeed, minPatSpeed)        
+        # getSpeed(msg, patSpeed, minPatSpeed)        
 
 
         rospy.set_param('max_vel_x', patSpeed)
         rospy.set_param('min_vel_x', minPatSpeed)
 
+        # Publish 'max' as a ROS topic
+        plasticPub = rospy.Publisher('maxVelocity', Int32, queue_size=10)
+        plasticPub.publish(patSpeed)
+
+        # Publish 'min' as a ROS topic
+        plasticPub = rospy.Publisher('minVelocity', Int32, queue_size=10)
+        plasticPub.publish(minPatSpeed)
+
         # rospy.loginfo('Max Speed: ', str(patSpeed))
         # rospy.loginfo('Min Speed: ', str(minPatSpeed))
 
-           
-    rospy.on_shutdown(saveCSV)
+
+
+
+    # rospy.on_shutdown(saveCSV)
 
     return
 
 
 if __name__ == '__main__':
-    makeFolder()
+    # makeFolder()
     main()
