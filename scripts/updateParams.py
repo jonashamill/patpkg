@@ -58,8 +58,10 @@ def makeFolder():
         else:
             print("Log folder created")
 
-    testFile.close()
-    os.remove(testFile.name)
+    else:
+
+        testFile.close()
+        os.remove(testFile.name)
 
 def saveCSV():
     
