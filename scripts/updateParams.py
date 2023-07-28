@@ -12,9 +12,10 @@ import csv
 
 #Global vars
 timeList = []
-speedList = []
+minList = []
+maxList = []
 start = time.perf_counter()
-
+currentMarker = 999
 
 def getTime():
 
@@ -66,10 +67,12 @@ def saveCSV():
 
     with open(filename, "w", newline="") as file:
         writer = csv.writer(file)
-        writer.writerow(['Time', 'Velocity'])
+        writer.writerow(['Time', 'Velocity Min', 'Velocity Max'])
         
-        for i in range(len(speedList)):
-            writer.writerow([timeList[i], speedList[i]])
+        for i in range(len(maxList)):
+            writer.writerow([timeList[i], minList[i], maxList[i]])
+
+
 
 def checkDuplicate(iterable,check):
     for i in iterable:
@@ -77,25 +80,24 @@ def checkDuplicate(iterable,check):
             return True
 
 
-def getSpeed(msg):
+def getSpeed(msg, patSpeed, minPatSpeed):
 
     for marker in msg.markers:
         global currentMarker
-        global timeTaken
 
         if marker.id != currentMarker:
             
             finish = time.perf_counter()
             timeTaken = round(finish-start, 5)
             currentMarker = marker.id
-            patSpeed = patrolSpeed()
 
 
             if checkDuplicate(timeTaken, currentMarker) == True:
                 continue
             else:
                 timeList.append(timeTaken)
-                speedList.append(patSpeed)
+                maxList.append(patSpeed)
+                minList.append(minPatSpeed)
             
 
             rospy.loginfo(currentMarker)
@@ -126,6 +128,9 @@ def patrolSpeed(plastic):
 
 def main():
 
+    global msg
+
+
     usePlasticity = rospy.get_param("~usePlasticity", True)
 
     #initialise rosnode
@@ -149,7 +154,8 @@ def main():
             patSpeed = 0.25
             minPatSpeed = 0.1
 
-            
+
+        getSpeed(msg, patSpeed, minPatSpeed)        
 
 
         rospy.set_param('max_vel_x', patSpeed)
