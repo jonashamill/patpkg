@@ -167,12 +167,12 @@ def main():
         rospy.set_param('min_vel_x', minPatSpeed)
 
         # Publish 'max' as a ROS topic
-        plasticPub = rospy.Publisher('maxVelocity', Int32, queue_size=10)
-        plasticPub.publish(patSpeed)
+        maxVelPub = rospy.Publisher('maxVelocity', Int32, queue_size=10)
+        maxVelPub.publish(patSpeed)
 
         # Publish 'min' as a ROS topic
-        plasticPub = rospy.Publisher('minVelocity', Int32, queue_size=10)
-        plasticPub.publish(minPatSpeed)
+        minVelPub = rospy.Publisher('minVelocity', Int32, queue_size=10)
+        minVelPub.publish(minPatSpeed)
 
         # rospy.loginfo('Max Speed: ', str(patSpeed))
         # rospy.loginfo('Min Speed: ', str(minPatSpeed))
