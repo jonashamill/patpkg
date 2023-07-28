@@ -4,6 +4,73 @@ import rospy
 from geometry_msgs.msg import Twist
 from std_msgs.msg import Int32
 import time
+from datetime import datetime
+import os
+import rospkg
+import csv
+
+
+#Global vars
+timeList = []
+speedList = []
+start = time.perf_counter()
+
+
+def getTime():
+
+    #grabbing time and date to provide unique ID for logs
+    dateTime = datetime.now()
+    dtString = dateTime.strftime("%Y%m%d%H%M%S") #ISO 8601 Standard
+
+    return dtString
+
+
+def getPath():
+
+    timenow = getTime()
+
+    rp = rospkg.RosPack()
+    packagePath = rp.get_path('arLogger')
+
+    path = os.path.join(packagePath, "logs")
+
+    fullpath = os.path.join(path, "arlog_" + timenow + ".csv")
+
+    print (fullpath)
+
+    return path, fullpath
+
+def makeFolder():
+
+    path, _ = getPath()
+
+    testFile = None
+
+    # test folder permisions
+    try:
+        testFile = open(os.path.join(path, 'test.txt'), 'w+')
+    except IOError:
+        try:
+            os.mkdir(path)
+        except OSError:
+            print("No log folder created")
+        else:
+            print("Log folder created")
+
+    testFile.close()
+    os.remove(testFile.name)
+
+def saveCSV():
+    
+    _, filename = getPath()
+
+    with open(filename, "w", newline="") as file:
+        writer = csv.writer(file)
+        writer.writerow(['ID', 'Time', 'Timesince'])
+        
+        for i in range(len(idList)):
+            writer.writerow([idList[i], timeList[i], timeSinceList[i]])
+
 
 def plasticCallback(msg):
 
@@ -66,4 +133,5 @@ def main():
 
 
 if __name__ == '__main__':
+    makeFolder()
     main()
