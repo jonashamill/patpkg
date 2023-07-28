@@ -85,26 +85,26 @@ def checkDuplicate(iterable,check):
 
 def getSpeed(msg, patSpeed, minPatSpeed):
 
-    for marker in msg.markers:
-        global currentMarker
+    # for marker in msg.markers:
+    #     global currentMarker
 
-        if marker.id != currentMarker:
+    #     if marker.id != currentMarker:
             
-            finish = time.perf_counter()
-            timeTaken = round(finish-start, 5)
-            currentMarker = marker.id
+    finish = time.perf_counter()
+    timeTaken = round(finish-start, 5)
+    # currentMarker = marker.id
 
 
-            if checkDuplicate(timeTaken, currentMarker) == True:
-                continue
-            else:
-                timeList.append(timeTaken)
-                maxList.append(patSpeed)
-                minList.append(minPatSpeed)
-            
+    # if checkDuplicate(timeTaken, currentMarker) == True:
+    #     continue
+    # else:
+    timeList.append(timeTaken)
+    maxList.append(patSpeed)
+    minList.append(minPatSpeed)
+    
 
-            rospy.loginfo(currentMarker)
-            rospy.loginfo(timeTaken)
+    rospy.loginfo(currentMarker)
+    rospy.loginfo(timeTaken)
 
 
 def plasticCallback(msg):
