@@ -66,10 +66,40 @@ def saveCSV():
 
     with open(filename, "w", newline="") as file:
         writer = csv.writer(file)
-        writer.writerow(['ID', 'Time', 'Timesince'])
+        writer.writerow(['Time', 'Velocity'])
         
-        for i in range(len(idList)):
-            writer.writerow([idList[i], timeList[i], timeSinceList[i]])
+        for i in range(len(speedList)):
+            writer.writerow([timeList[i], speedList[i]])
+
+def checkDuplicate(iterable,check):
+    for i in iterable:
+        if i == check:
+            return True
+
+
+def getSpeed(msg):
+
+    for marker in msg.markers:
+        global currentMarker
+        global timeTaken
+
+        if marker.id != currentMarker:
+            
+            finish = time.perf_counter()
+            timeTaken = round(finish-start, 5)
+            currentMarker = marker.id
+            patSpeed = patrolSpeed()
+
+
+            if checkDuplicate(timeTaken, currentMarker) == True:
+                continue
+            else:
+                timeList.append(timeTaken)
+                speedList.append(patSpeed)
+            
+
+            rospy.loginfo(currentMarker)
+            rospy.loginfo(timeTaken)
 
 
 def plasticCallback(msg):
@@ -113,6 +143,7 @@ def main():
         if usePlasticity:
             patSpeed = patrolSpeed(plastic)
             minPatSpeed = patSpeed - 0.15
+            
         
         else:
             patSpeed = 0.25
@@ -128,6 +159,7 @@ def main():
         # rospy.loginfo('Min Speed: ', str(minPatSpeed))
 
            
+    rospy.on_shutdown(saveCSV)
 
     return
 
