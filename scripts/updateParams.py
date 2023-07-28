@@ -128,9 +128,7 @@ def patrolSpeed(plastic):
 
 
 
-def main():
-
-    global msg
+def main(msg):
 
 
     usePlasticity = rospy.get_param("~usePlasticity", True)
