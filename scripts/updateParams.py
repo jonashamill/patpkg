@@ -17,6 +17,7 @@ maxList = []
 start = time.perf_counter()
 currentMarker = 999
 
+
 def getTime():
 
     #grabbing time and date to provide unique ID for logs
@@ -126,10 +127,14 @@ def patrolSpeed(plastic):
 
     return patSpeed
 
-
+def getMSG(msg):
+    
+    return msg
 
 def main():
 
+
+    msg = getMSG
 
     usePlasticity = rospy.get_param("~usePlasticity", True)
 
@@ -155,7 +160,7 @@ def main():
             minPatSpeed = 0.1
 
 
-        getSpeed(plastic, patSpeed, minPatSpeed)        
+        getSpeed(msg, patSpeed, minPatSpeed)        
 
 
         rospy.set_param('max_vel_x', patSpeed)
