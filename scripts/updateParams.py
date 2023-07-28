@@ -31,7 +31,7 @@ def getPath():
     timenow = getTime()
 
     rp = rospkg.RosPack()
-    packagePath = rp.get_path('arLogger')
+    packagePath = rp.get_path('patpkg')
 
     path = os.path.join(packagePath, "logs")
 
