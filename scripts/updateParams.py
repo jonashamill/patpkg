@@ -2,7 +2,7 @@
 
 import rospy
 from geometry_msgs.msg import Twist
-from std_msgs.msg import Int32
+from std_msgs.msg import Int32, Float32
 import time
 from datetime import datetime
 import os
@@ -167,11 +167,11 @@ def main():
         rospy.set_param('min_vel_x', minPatSpeed)
 
         # Publish 'max' as a ROS topic
-        maxVelPub = rospy.Publisher('maxVelocity', Int32, queue_size=10)
+        maxVelPub = rospy.Publisher('maxVelocity', Float32, queue_size=10)
         maxVelPub.publish(patSpeed)
 
         # Publish 'min' as a ROS topic
-        minVelPub = rospy.Publisher('minVelocity', Int32, queue_size=10)
+        minVelPub = rospy.Publisher('minVelocity', Float32, queue_size=10)
         minVelPub.publish(minPatSpeed)
 
         # rospy.loginfo('Max Speed: ', str(patSpeed))
