@@ -50,7 +50,11 @@ def main():
     rospy.init_node("patrol")
 
     patSpeed = rospy.get_param("~initialSpeed", 0.2)
+
+    initialTorq = rospy.get_param("core2/motors/torque_limit")
     
+    rospy.loginfo('torque: ' + str(initialTorq))
+
     plastic = rospy.Subscriber('plasticTopic', Int32, plasticCallback)
 
     
