@@ -79,8 +79,8 @@ def main():
         cmd_pub.publish(cmd_vel)
 
 
-        rospy.set_param('max_vel_x', patSpeed)
-        rospy.set_param('min_vel_x', minPatSpeed)
+        # rospy.set_param('max_vel_x', patSpeed)
+        # rospy.set_param('min_vel_x', minPatSpeed)
 
         # Publish 'max' as a ROS topic
         maxVelPub = rospy.Publisher('maxVelocity', Float32, queue_size=10)
