@@ -43,7 +43,7 @@ def main():
 
     # msg = getMSG
 
-    usePlasticity = rospy.get_param("~usePlasticity", True)
+    usePlasticity = rospy.get_param("usePlasticity", True)
 
     #initialise rosnode
     rospy.init_node("patrol")
