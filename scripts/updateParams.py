@@ -72,11 +72,11 @@ def main():
         # getSpeed(msg, patSpeed, minPatSpeed)  
 
          # Create a Twist message to control linear and angular velocity
-        cmd_vel = Twist()
-        cmd_vel.linear.x = patSpeed
-        # cmd_vel.angular.z = 0.0      
+        # cmd_vel = Twist()
+        # cmd_vel.linear.x = patSpeed
+        # # cmd_vel.angular.z = 0.0      
 
-        cmd_pub.publish(cmd_vel)
+        # cmd_pub.publish(cmd_vel)
 
 
         # rospy.set_param('max_vel_x', patSpeed)
@@ -89,6 +89,8 @@ def main():
         # Publish 'min' as a ROS topic
         minVelPub = rospy.Publisher('minVelocity', Float32, queue_size=10)
         minVelPub.publish(minPatSpeed)
+
+        rospy.set_param('/cmd_vel/linear/x', patSpeed)
 
         # rospy.loginfo('Max Speed: ', str(patSpeed))
         # rospy.loginfo('Min Speed: ', str(minPatSpeed))
