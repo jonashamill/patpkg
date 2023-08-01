@@ -18,7 +18,6 @@ def plasticCallback(msg):
 
     plastic = msg.data
 
-    return plastic
 
 def patrolSpeed(patSpeed):
     
@@ -50,11 +49,7 @@ def main():
     rospy.init_node("patrol")
 
     patSpeed = rospy.get_param("~initialSpeed", 0.2)
-
-    initialTorq = rospy.get_param("core2/motors/torque_limit")
     
-    rospy.loginfo('torque: ' + str(initialTorq))
-
     plastic = rospy.Subscriber('plasticTopic', Int32, plasticCallback)
 
     
@@ -74,7 +69,14 @@ def main():
             minPatSpeed = 0.1
 
 
-        # getSpeed(msg, patSpeed, minPatSpeed)        
+        # getSpeed(msg, patSpeed, minPatSpeed)  
+
+         # Create a Twist message to control linear and angular velocity
+        cmd_vel = Twist()
+        cmd_vel.linear.x = patSpeed
+        # cmd_vel.angular.z = 0.0      
+
+        cmd_pub.publish(cmd_vel)
 
 
         rospy.set_param('max_vel_x', patSpeed)
