@@ -50,8 +50,22 @@ def main():
     #initialise rosnode
     rospy.init_node("patrol")
 
-    patSpeed = rospy.get_param("initialSpeed", 1.2)
-    patacc = rospy.get_param("initialAcc", 10)
+    patSpeed = rospy.get_param("initialSpeed")
+    patacc = rospy.get_param("acc_lim_x")
+
+    print ('patac 1: ', patacc)
+
+    patacc = rospy.get_param("~acc_lim_x")
+
+    print ('patac ~ 2: ', patacc)
+
+    patacc = rospy.get_param("/acc_lim_x")
+
+    print ('patac / 3: ', patacc)
+
+    patacc = rospy.get_param("/TrajectoryPlannerROS/acc_lim_x")
+
+    print ('patac /t/ 4: ', patacc)
 
     
     plastic = rospy.Subscriber('plasticTopic', Int32, plasticCallback)
