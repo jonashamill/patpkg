@@ -79,18 +79,19 @@ def main():
         # cmd_pub.publish(cmd_vel)
 
 
-        # rospy.set_param('max_vel_x', patSpeed)
+        rospy.set_param('max_vel_x', patSpeed)
+        rospy.set_param('acc_lim_x', patSpeed)
+        
         # rospy.set_param('min_vel_x', minPatSpeed)
 
-        # Publish 'max' as a ROS topic
-        maxVelPub = rospy.Publisher('maxVelocity', Float32, queue_size=10)
-        maxVelPub.publish(patSpeed)
+        # # Publish 'max' as a ROS topic
+        # maxVelPub = rospy.Publisher('maxVelocity', Float32, queue_size=10)
+        # maxVelPub.publish(patSpeed)
 
-        # Publish 'min' as a ROS topic
-        minVelPub = rospy.Publisher('minVelocity', Float32, queue_size=10)
-        minVelPub.publish(minPatSpeed)
+        # # Publish 'min' as a ROS topic
+        # minVelPub = rospy.Publisher('minVelocity', Float32, queue_size=10)
+        # minVelPub.publish(minPatSpeed)
 
-        rospy.set_param('/cmd_vel/linear/x', patSpeed)
 
         # rospy.loginfo('Max Speed: ', str(patSpeed))
         # rospy.loginfo('Min Speed: ', str(minPatSpeed))
