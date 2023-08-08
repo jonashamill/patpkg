@@ -19,7 +19,7 @@ def plasticCallback(msg):
     plastic = msg.data
 
 
-def patrolSpeed(patSpeed):
+def patrolSpeed(patSpeed, patacc):
     
     global plastic
 
@@ -27,11 +27,13 @@ def patrolSpeed(patSpeed):
 
     if plastic == 1:
         patSpeed = patSpeed - 1.2
+        patacc = patacc - 20
     
     elif plastic == 2:
         patSpeed = patSpeed + 1.2
+        patacc = patacc + 20
 
-    return patSpeed
+    return patSpeed, patacc
 
 # def getMSG(msg):
     
@@ -48,7 +50,9 @@ def main():
     #initialise rosnode
     rospy.init_node("patrol")
 
-    patSpeed = rospy.get_param("~initialSpeed", 0.2)
+    patSpeed = rospy.get_param("initialSpeed", 1.2)
+    patacc = rospy.get_param("initialAcc", 10)
+
     
     plastic = rospy.Subscriber('plasticTopic', Int32, plasticCallback)
 
@@ -60,11 +64,12 @@ def main():
 
         
         if usePlasticity:
-            patSpeed = patrolSpeed(patSpeed)
+            patSpeed, patacc = patrolSpeed(patSpeed, patacc)
             minPatSpeed = patSpeed - 0.15
             
         
         else:
+            patacc = 10
             patSpeed = 0.25
             minPatSpeed = 0.1
 
