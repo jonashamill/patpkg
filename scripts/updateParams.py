@@ -71,7 +71,7 @@ def main():
             
         
         else:
-            patacc = 10
+            patacc = 100
             patSpeed = 0.25
             minPatSpeed = 0.1
 
