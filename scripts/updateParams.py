@@ -26,10 +26,10 @@ def patrolSpeed(patSpeed):
     #plastic =  msg.data # plasticCallback(msg)
 
     if plastic == 1:
-        patSpeed = patSpeed - 0.2
+        patSpeed = patSpeed - 1.2
     
     elif plastic == 2:
-        patSpeed = patSpeed + 0.2
+        patSpeed = patSpeed + 1.2
 
     return patSpeed
 
@@ -81,7 +81,7 @@ def main():
 
         rospy.set_param('max_vel_x', patSpeed)
         rospy.set_param('acc_lim_x', patSpeed)
-        
+
         # rospy.set_param('min_vel_x', minPatSpeed)
 
         # # Publish 'max' as a ROS topic
