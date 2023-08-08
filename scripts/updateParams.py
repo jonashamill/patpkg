@@ -55,9 +55,9 @@ def main():
 
     print ('patac 1: ', patacc)
 
-    patacc = rospy.get_param("~acc_lim_x")
+    # patacc = rospy.get_param('~acc_lim_x')
 
-    print ('patac ~ 2: ', patacc)
+    # print ('patac ~ 2: ', patacc)
 
     patacc = rospy.get_param("/acc_lim_x")
 
