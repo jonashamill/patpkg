@@ -51,7 +51,7 @@ def main():
     rospy.init_node("patrol")
 
     patSpeed = rospy.get_param("initialSpeed")
-    patacc = rospy.get_param("/acc_lim_x")
+    patacc = rospy.get_param("/TrajectoryPlannerROS/acc_lim_x")
 
     print ('patac 1: ', patacc)
 
