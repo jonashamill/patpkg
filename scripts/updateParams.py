@@ -93,7 +93,7 @@ def main():
 
         patacc = rospy.get_param("acc_lim_x")
 
-        print ('patac 2: ', patacc)
+        # print ('patac 2: ', patacc)
 
         # rospy.set_param('min_vel_x', minPatSpeed)
 
