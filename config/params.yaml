@@ -4,3 +4,7 @@ timeThresholdHigh: 6  # Define the higher time threshold
 initialSpeed: 0.2 #Defing starting linear velocity in m/s
 linearRange: 50000 #Defining how far forward robot goes before rotating
 angularRange: 1000 #Defining the rotating of the robot 
+<<<<<<< HEAD
+=======
+initialAcc: 10
+>>>>>>> 8eef36bfcd6954ecb64cdca28e497677cf918d06

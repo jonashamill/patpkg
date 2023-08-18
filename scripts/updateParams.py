@@ -19,19 +19,21 @@ def plasticCallback(msg):
     plastic = msg.data
 
 
-def patrolSpeed(patSpeed):
+def patrolSpeed(patSpeed, patacc):
     
     global plastic
 
     #plastic =  msg.data # plasticCallback(msg)
 
     if plastic == 1:
-        patSpeed = patSpeed - 0.2
+        patSpeed = 2 #patSpeed - 1.2
+        patacc = 10 #patacc - 20
     
     elif plastic == 2:
-        patSpeed = patSpeed + 0.2
+        patSpeed = 10 #patSpeed + 1.2
+        patacc = 100 #patacc + 20
 
-    return patSpeed
+    return patSpeed, patacc
 
 # def getMSG(msg):
     
@@ -48,7 +50,11 @@ def main():
     #initialise rosnode
     rospy.init_node("patrol")
 
-    patSpeed = rospy.get_param("~initialSpeed", 0.2)
+    patSpeed = rospy.get_param("initialSpeed")
+    patacc = rospy.get_param("/TrajectoryPlannerROS/acc_lim_x")
+
+    print ('patac 1: ', patacc)
+
     
     plastic = rospy.Subscriber('plasticTopic', Int32, plasticCallback)
 
@@ -60,11 +66,12 @@ def main():
 
         
         if usePlasticity:
-            patSpeed = patrolSpeed(patSpeed)
+            patSpeed, patacc = patrolSpeed(patSpeed, patacc)
             minPatSpeed = patSpeed - 0.15
             
         
         else:
+            patacc = 100
             patSpeed = 0.25
             minPatSpeed = 0.1
 
@@ -79,18 +86,25 @@ def main():
         # cmd_pub.publish(cmd_vel)
 
 
-        # rospy.set_param('max_vel_x', patSpeed)
+        rospy.set_param('/TrajectoryPlannerROS/max_vel_x', patSpeed)
+        rospy.set_param('/TrajectoryPlannerROS/acc_lim_x', patacc)
+        rospy.set_param('max_vel_x', patSpeed)
+        rospy.set_param('acc_lim_x', patacc)
+
+        patacc = rospy.get_param("acc_lim_x")
+
+        # print ('patac 2: ', patacc)
+
         # rospy.set_param('min_vel_x', minPatSpeed)
 
-        # Publish 'max' as a ROS topic
-        maxVelPub = rospy.Publisher('maxVelocity', Float32, queue_size=10)
-        maxVelPub.publish(patSpeed)
+        # # Publish 'max' as a ROS topic
+        # maxVelPub = rospy.Publisher('maxVelocity', Float32, queue_size=10)
+        # maxVelPub.publish(patSpeed)
 
-        # Publish 'min' as a ROS topic
-        minVelPub = rospy.Publisher('minVelocity', Float32, queue_size=10)
-        minVelPub.publish(minPatSpeed)
+        # # Publish 'min' as a ROS topic
+        # minVelPub = rospy.Publisher('minVelocity', Float32, queue_size=10)
+        # minVelPub.publish(minPatSpeed)
 
-        rospy.set_param('/cmd_vel/linear/x', patSpeed)
 
         # rospy.loginfo('Max Speed: ', str(patSpeed))
         # rospy.loginfo('Min Speed: ', str(minPatSpeed))
