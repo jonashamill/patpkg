@@ -26,11 +26,11 @@ def patrolSpeed(patSpeed, patacc):
     #plastic =  msg.data # plasticCallback(msg)
 
     if plastic == 1:
-        patSpeed = 2 #patSpeed - 1.2
+        patSpeed = 10 #patSpeed - 1.2
         patacc = 10 #patacc - 20
     
     elif plastic == 2:
-        patSpeed = 10 #patSpeed + 1.2
+        patSpeed = 100 #patSpeed + 1.2
         patacc = 100 #patacc + 20
 
     return patSpeed, patacc
