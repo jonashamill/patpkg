@@ -86,10 +86,10 @@ def main():
         # cmd_pub.publish(cmd_vel)
 
 
-        rospy.set_param('/TrajectoryPlannerROS/max_vel_x', patSpeed)
-        rospy.set_param('/TrajectoryPlannerROS/acc_lim_x', patacc)
-        rospy.set_param('max_vel_x', patSpeed)
-        rospy.set_param('acc_lim_x', patacc)
+        # rospy.set_param('/TrajectoryPlannerROS/max_vel_x', patSpeed)
+        # rospy.set_param('/TrajectoryPlannerROS/acc_lim_x', patacc)
+        # rospy.set_param('max_vel_x', patSpeed)
+        # rospy.set_param('acc_lim_x', patacc)
 
         patacc = rospy.get_param("acc_lim_x")
 
