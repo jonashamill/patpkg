@@ -30,22 +30,16 @@ def patrolSpeed():
         maxPatSpeed = 0.1
         minPatSpeed = 0.1
         patacc = 1.0
-
-        rospy.loginfo('decreasing speed- param')
     
     elif plastic == 2:
         maxPatSpeed = 0.5
         minPatSpeed = 0.3
         patacc = 1.0
 
-        rospy.loginfo('increasing speed - params')
-
     else:
         maxPatSpeed = 0.25
         minPatSpeed = 0.1
         patacc = 1.0
-
-        rospy.loginfo('default speed - param')
 
     return maxPatSpeed, minPatSpeed, patacc
 
