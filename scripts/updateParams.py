@@ -9,17 +9,15 @@ import os
 import rospkg
 import csv
 
-plastic = 0
-
 
 def plasticCallback(msg):
-    
+
     global plastic
 
     plastic = msg.data
 
 
-def patrolSpeed(patSpeed, patacc):
+def patrolSpeed():
     
     global plastic
 
@@ -44,6 +42,8 @@ def patrolSpeed(patSpeed, patacc):
 
     return maxPatSpeed, minPatSpeed, patacc
 
+
+
 # def getMSG(msg):
     
 #     return msg
@@ -59,13 +59,15 @@ def main():
     #initialise rosnode
     rospy.init_node("patrol")
 
-    patSpeed = rospy.get_param("initialSpeed")
-    patacc = rospy.get_param("/TrajectoryPlannerROS/acc_lim_x")
+    # patSpeed = rospy.get_param("initialSpeed")
+    # patacc = rospy.get_param("/TrajectoryPlannerROS/acc_lim_x")
 
-    print ('patac 1: ', patacc)
+    # print ('patac 1: ', patacc)
 
     
     plastic = rospy.Subscriber('plasticTopic', Int32, plasticCallback)
+
+    rospy.loginfo('Plastic set to: {}', plastic)
 
     
     # create ros pub
@@ -75,14 +77,24 @@ def main():
 
         
         if usePlasticity:
-            patSpeed, patacc = patrolSpeed(patSpeed, patacc)
-            minPatSpeed = patSpeed - 0.15
+            maxPatSpeed, minPatSpeed, patacc = patrolSpeed()
             
         
         else:
-            patacc = 100
-            patSpeed = 0.25
+            maxPatSpeed = 0.25
             minPatSpeed = 0.1
+            patacc = 1.0
+
+        rospy.loginfo('/max_vel_x: %f', maxPatSpeed)
+        rospy.loginfo('/min_vel_x: %f', minPatSpeed)
+        rospy.loginfo('/acc_lim_x: %f', patacc)
+
+
+
+
+        rospy.set_param('/max_vel_x', maxPatSpeed)
+        rospy.set_param('/min_vel_x', minPatSpeed)
+        rospy.set_param('/acc_lim_x', patacc)
 
 
         # getSpeed(msg, patSpeed, minPatSpeed)  
@@ -100,7 +112,7 @@ def main():
         # rospy.set_param('max_vel_x', patSpeed)
         # rospy.set_param('acc_lim_x', patacc)
 
-        patacc = rospy.get_param("acc_lim_x")
+        # patacc = rospy.get_param("acc_lim_x")
 
         # print ('patac 2: ', patacc)
 
