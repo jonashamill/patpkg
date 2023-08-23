@@ -25,13 +25,7 @@ def patrolSpeed():
 
     #plastic =  msg.data # plasticCallback(msg)
 
-    if plastic == 0:
-        maxPatSpeed = 0.25
-        minPatSpeed = 0.1
-        patacc = 1.0
-    
-    
-    elif plastic == 1:
+    if plastic == 1:
 
         maxPatSpeed = 0.1
         minPatSpeed = 0.1
@@ -40,6 +34,11 @@ def patrolSpeed():
     elif plastic == 2:
         maxPatSpeed = 0.5
         minPatSpeed = 0.3
+        patacc = 1.0
+
+    else:
+        maxPatSpeed = 0.25
+        minPatSpeed = 0.1
         patacc = 1.0
 
     return maxPatSpeed, minPatSpeed, patacc
@@ -91,16 +90,16 @@ def main():
         #     minPatSpeed = 0.1
         #     patacc = 1.0
 
-        # rospy.loginfo('/max_vel_x: %f', maxPatSpeed)
-        # rospy.loginfo('/min_vel_x: %f', minPatSpeed)
-        # rospy.loginfo('/acc_lim_x: %f', patacc)
+        rospy.loginfo('/max_vel_x: %f', maxPatSpeed)
+        rospy.loginfo('/min_vel_x: %f', minPatSpeed)
+        rospy.loginfo('/acc_lim_x: %f', patacc)
 
 
 
 
-        # rospy.set_param('/max_vel_x', maxPatSpeed)
-        # rospy.set_param('/min_vel_x', minPatSpeed)
-        # rospy.set_param('/acc_lim_x', patacc)
+        rospy.set_param('/max_vel_x', maxPatSpeed)
+        rospy.set_param('/min_vel_x', minPatSpeed)
+        rospy.set_param('/acc_lim_x', patacc)
 
 
         # getSpeed(msg, patSpeed, minPatSpeed)  
