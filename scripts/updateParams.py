@@ -9,6 +9,8 @@ import os
 import rospkg
 import csv
 
+plastic = 0
+
 
 def plasticCallback(msg):
 
