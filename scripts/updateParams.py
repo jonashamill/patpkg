@@ -90,9 +90,9 @@ def main():
         #     minPatSpeed = 0.1
         #     patacc = 1.0
 
-        rospy.loginfo('/max_vel_x: %f', maxPatSpeed)
-        rospy.loginfo('/min_vel_x: %f', minPatSpeed)
-        rospy.loginfo('/acc_lim_x: %f', patacc)
+        # rospy.loginfo('/max_vel_x: %f', maxPatSpeed)
+        # rospy.loginfo('/min_vel_x: %f', minPatSpeed)
+        # rospy.loginfo('/acc_lim_x: %f', patacc)
 
 
 
