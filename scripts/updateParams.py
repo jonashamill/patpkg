@@ -67,7 +67,7 @@ def main():
     
     plastic = rospy.Subscriber('plasticTopic', Int32, plasticCallback)
 
-    rospy.loginfo('Plastic set to: {}', plastic)
+    rospy.loginfo('Plastic set to: %f', plastic)
 
     
     # create ros pub
