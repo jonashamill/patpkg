@@ -32,7 +32,7 @@ def patrolSpeed():
         patacc = 1.0
     
     elif plastic == 2:
-        maxPatSpeed = 0.5
+        maxPatSpeed = 0.4
         minPatSpeed = 0.3
         patacc = 1.0
 
