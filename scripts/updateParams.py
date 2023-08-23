@@ -56,6 +56,10 @@ def main():
 
     usePlasticity = rospy.get_param("usePlasticity", True)
 
+    maxPatSpeed = rospy.get_param('/max_vel_x', 0.25)
+    minPatSpeed = rospy.get_param('/min_vel_x', 0.1)
+    patacc = rospy.get_param('/acc_lim_x', 1.0)
+
     #initialise rosnode
     rospy.init_node("patrol")
 
@@ -80,10 +84,10 @@ def main():
             maxPatSpeed, minPatSpeed, patacc = patrolSpeed()
             
         
-        else:
-            maxPatSpeed = 0.25
-            minPatSpeed = 0.1
-            patacc = 1.0
+        # else:
+        #     maxPatSpeed = 0.25
+        #     minPatSpeed = 0.1
+        #     patacc = 1.0
 
         rospy.loginfo('/max_vel_x: %f', maxPatSpeed)
         rospy.loginfo('/min_vel_x: %f', minPatSpeed)
