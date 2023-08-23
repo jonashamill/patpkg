@@ -97,9 +97,9 @@ def main():
 
 
 
-        rospy.set_param('/max_vel_x', maxPatSpeed)
-        rospy.set_param('/min_vel_x', minPatSpeed)
-        rospy.set_param('/acc_lim_x', patacc)
+        rospy.set_param('/TrajectoryPlannerROS/max_vel_x', maxPatSpeed)
+        rospy.set_param('/TrajectoryPlannerROS/min_vel_x', minPatSpeed)
+        rospy.set_param('/TrajectoryPlannerROS/acc_lim_x', patacc)
 
 
         # getSpeed(msg, patSpeed, minPatSpeed)  
