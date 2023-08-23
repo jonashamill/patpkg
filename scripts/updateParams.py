@@ -25,15 +25,24 @@ def patrolSpeed(patSpeed, patacc):
 
     #plastic =  msg.data # plasticCallback(msg)
 
-    if plastic == 1:
-        patSpeed = 10 #patSpeed - 1.2
-        patacc = 10 #patacc - 20
+    if plastic == 0:
+        maxPatSpeed = 0.25
+        minPatSpeed = 0.1
+        patacc = 1.0
+    
+    
+    elif plastic == 1:
+
+        maxPatSpeed = 0.1
+        minPatSpeed = 0.1
+        patacc = 1.0
     
     elif plastic == 2:
-        patSpeed = 100 #patSpeed + 1.2
-        patacc = 100 #patacc + 20
+        maxPatSpeed = 0.5
+        minPatSpeed = 0.3
+        patacc = 1.0
 
-    return patSpeed, patacc
+    return maxPatSpeed, minPatSpeed, patacc
 
 # def getMSG(msg):
     
