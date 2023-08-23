@@ -70,7 +70,7 @@ def main():
     # print ('patac 1: ', patacc)
 
     
-    plastic = rospy.Subscriber('plasticTopic', Int32, plasticCallback)
+    rospy.Subscriber('plasticTopic', Int32, plasticCallback)
 
     rospy.loginfo('Plastic set to: %s', str(plastic))
 
