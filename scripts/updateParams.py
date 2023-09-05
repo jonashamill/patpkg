@@ -63,7 +63,7 @@ def main():
         
         if usePlasticity:
             if plastic == 1 and tagMSG == True:
-                for _ in range (20):
+                for _ in range (2):
                     drive(0.0,0.3,cmd_pub)
             
 
