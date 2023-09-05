@@ -63,6 +63,7 @@ def main():
         
         if usePlasticity:
             if plastic == 1 and tagMSG == True:
+                rospy.loginfo("pausing")
                 drive(0.0,0.3,cmd_pub)
                 rospy.sleep(0.1)
             
