@@ -34,11 +34,10 @@ def drive(linear, angular, cmd_pub):
     cmd_pub.publish(twist) # publish message
 
 
-
 def main():
 
     global plastic
-
+    global tagMSG
 
 
     usePlasticity = rospy.get_param("usePlasticity", True)
@@ -49,11 +48,7 @@ def main():
     # Create ROS publisher
     cmd_pub = rospy.Publisher("cmd_vel", Twist, queue_size=1)
 
-    if plastic == 1:
-        drive(0.0,0.2,cmd_pub)
-
-
-
+    
     rospy.Subscriber('plasticTopic', Int32, plasticCallback)
 
     rospy.loginfo('Plastic set to: %s', str(plastic))
@@ -65,10 +60,10 @@ def main():
     cmd_pub = rospy.Publisher("cmd_vel", Twist, queue_size=1)
     
     while not rospy.is_shutdown():
-
         
         if usePlasticity:
-            maxPatSpeed, minPatSpeed, patacc = patrolSpeed()
+            if plastic == 1 and tagMSG == True:
+                drive(0.0,0.2,cmd_pub)
             
 
     return
