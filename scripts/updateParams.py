@@ -64,10 +64,10 @@ def main():
         if usePlasticity:
             if plastic == 1 and tagMSG == True:
                 rospy.loginfo("pausing")
-                for _ in range (20):
-                    drive(0.0,0.0,cmd_pub)
-                    rospy.sleep(0.2)
                 
+                pausePub = rospy.Publisher('pauseTopic', Int32, queue_size=10)
+                pausePub.publish(True)        
+
                 # Publish 'tag' as a ROS topic
                 tagPub = rospy.Publisher('tagTopic', Int32, queue_size=10)
                 tagPub.publish(False)
