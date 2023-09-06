@@ -9,15 +9,15 @@ import os
 import rospkg
 import csv
 
-plastic = 0
+plasticMSG = 0
 tagMSG = False
 
 
 def plasticCallback(msg):
 
-    global plastic
+    global plasticMSG
 
-    plastic = msg.data
+    plasticMSG = msg.data
 
 def tagCallback(msg):
 
@@ -36,7 +36,7 @@ def drive(linear, angular, cmd_pub):
 
 def main():
 
-    global plastic
+    global plasticMSG
     global tagMSG
 
 
@@ -51,7 +51,7 @@ def main():
     
     rospy.Subscriber('plasticTopic', Int32, plasticCallback)
 
-    rospy.loginfo('Plastic set to: %s', str(plastic))
+    rospy.loginfo('Plastic set to: %s', str(plasticMSG))
 
     rospy.Subscriber('tagTopic', Int32, tagCallback)
 
@@ -62,11 +62,11 @@ def main():
     while not rospy.is_shutdown():
         
         if usePlasticity:
-            if plastic == 1 and tagMSG == True:
-                rospy.loginfo("pausing")
+            if plasticMSG == 1 and tagMSG == True:
                 
                 pausePub = rospy.Publisher('pauseTopic', Int32, queue_size=10)
-                pausePub.publish(True)        
+                pausePub.publish(True)
+                        
 
                 # Publish 'tag' as a ROS topic
                 tagPub = rospy.Publisher('tagTopic', Int32, queue_size=10)
@@ -77,6 +77,6 @@ def main():
     return
 
 
-if __name__ == '__main__':
+
     # makeFolder()
     main()

@@ -10,7 +10,7 @@
 
     <include file="$(find arLogger)/launch/arlaunch.launch" />
 
-    <node name="patrol" pkg="patpkg" type="updateParams.py" output="screen">
+    <!-- <node name="patrol" pkg="patpkg" type="updateParams.py" output="screen"> -->
 
     </node>
 
