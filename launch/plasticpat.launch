@@ -15,5 +15,9 @@
     <node name="patrol" pkg="patpkg" type="updateParams.py" output="screen">
 
     </node>
+
+    <include file="$(find patpkg)/launch/plasticpat.launch">
+        <launch-prefix>2&gt; &gt;(grep -v TF_REPEATED_DATA buffer_core)</launch-prefix>
+    </include>
    
 </launch>
