@@ -12,7 +12,7 @@
         <launch-prefix>2&gt; &gt;(grep -v TF_REPEATED_DATA buffer_core)</launch-prefix>
     </include>
 
-    <node name="patrol" pkg="patpkg" type="updateParams.py" output="screen"> -->
+    <node name="patrol" pkg="patpkg" type="updateParams.py" output="screen">
 
     </node>
    
