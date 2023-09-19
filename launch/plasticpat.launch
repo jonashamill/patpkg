@@ -8,16 +8,12 @@
 
     <!-- <param name="usePlasticity" value="True" /> -->
 
-    <include file="$(find arLogger)/launch/arlaunch.launch" />
+    <include file="$(find arLogger)/launch/arlaunch.launch">
+        <launch-prefix>2&gt; &gt;(grep -v TF_REPEATED_DATA buffer_core)</launch-prefix>
+    </include>
 
     <node name="patrol" pkg="patpkg" type="updateParams.py" output="screen"> -->
 
     </node>
-
-    <!-- Run the desired command and redirect stderr as needed -->
-    <node name="patpkg_node" pkg="patpkg" type="plasticpat.launch" output="screen">
-        <launch-prefix>2&gt; &gt;(grep -v TF_REPEATED_DATA buffer_core)</launch-prefix>
-    </node>
-
    
 </launch>
