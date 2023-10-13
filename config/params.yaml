@@ -1,4 +1,4 @@
-usePlasticity: True  # Set to True to enable plasticity, or False to disable it
+usePlasticity: False  # Set to True to enable plasticity, or False to disable it
 timeThresholdLow: 10  # Define the lower time threshold
 timeThresholdHigh: 11  # Define the higher time threshold
 # initialSpeed: 0.2 #Defing starting linear velocity in m/s
