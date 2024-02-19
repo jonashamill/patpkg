@@ -1,17 +1,24 @@
 <?xml version="1.0" ?>
 
 <launch>
+    <arg name="robot_ns" default="robot2"/>
 
-    <rosparam command="load" file="$(find patpkg)/config/params.yaml" />
+    <group ns="$(arg robot_ns)">
 
-    <rosparam command="load" file="$(find leo_navigation)/config/move_base/planners/local_planner.yaml" />
+        <rosparam command="load" file="$(find patpkg)/config/params.yaml" />
 
-    <!-- <param name="usePlasticity" value="True" /> -->
+        <rosparam command="load" file="$(find leo_navigation)/config/move_base/planners/local_planner.yaml" />
 
-    <include file="$(find arLogger)/launch/arlaunch.launch"/>
+        <!-- <param name="usePlasticity" value="True" /> -->
 
-    <node name="patrol" pkg="patpkg" type="updateParams.py" output="screen">
+        <include file="$(find arLogger)/launch/arlaunch.launch">
+            <arg name="robot_ns" value="$(arg robot_ns)" />
+        </include>
 
-    </node>
+        <node name="patrol" pkg="patpkg" type="updateParams.py" output="screen">
+
+        </node>
+    
+    </group>
    
 </launch>
